@@ -41,7 +41,13 @@ def math_quiz():
         print(f"\nQuestion: {problem}")
         user_answer = input("Your answer: ")
         user_answer = int(user_answer)
-
+        #If User input is not an Integer/Invalid
+        try:
+            user_answer = int(user_answer)
+        except ValueError:
+            print("Invalid Input !!!. Please Enter an Integer.")
+            continue
+            #when answer is correct
         if user_answer == answer:
             print("Correct! You earned a point.")
             s += 1
