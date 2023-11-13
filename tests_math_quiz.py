@@ -1,6 +1,5 @@
 import unittest
-from math_quiz import Generate_Random_Integer, Generate_Random_Operator, Generate_Expression_Result
-
+from math_quiz import Generate_Random_Integer, Generate_Random_Operator, Evaluate_Mathematical_Expression
 
 class TestMathGame(unittest.TestCase):
 
@@ -26,7 +25,7 @@ class TestMathGame(unittest.TestCase):
             ]
 
             for num_1, num_2, operator, expected_problem, expected_answer in test_cases:
-                problem, answer = Generate_Expression_Result(num_1, num_2, operator)
+                problem, answer = Evaluate_Mathematical_Expression(num_1, num_2, operator)
                 self.assertEqual(problem, expected_problem)
                 self.assertEqual(answer, expected_answer)
 
