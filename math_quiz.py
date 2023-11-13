@@ -1,66 +1,55 @@
 import random
 
-#returns random integer for a specified range min and max 
-def Generate_Random_Integer(min_val, max_val):
-    """
-    Random integer between min and max  value.
-    """
-    return random.randint(min_val, max_val)
+#Generates Random integer within range of two numbers including minimum value and maximum value itself.
+def Generate_Random_Integer(min_value, max_value):
+    
+    return random.randint(min_value, max_value)
 
-#returns random mathematical operator between +,- or *
+
+# Chooses random mathematical operator where the given choice is ('+', '-', '*').
+
 def Generate_Random_Operator():
     return random.choice(['+', '-', '*'])
 
-#performs arithmatic operation on two numbers and return expression and result
-def Generate_Expression_Result(num_1, num_2, operator):
-    expression = f"{num_1} {operator} {num_2}"
-    if operator == '-': 
-        output = num_1 - num_2
-    elif output == '+': 
-        a = num_1 + num_2
-    else: 
-        output = num_1 * num_2
-        #returns expression with its result
-    return expression, output
+#Performs mathematical operation and return the calulated value of the expression.
+def Evaluate_Mathematical_Expression(num_1, num_2, operator):
+    if operator == '+': result = num_1 + num_2
+    elif operator == '-': result = num_1 - num_2
+    elif operator =='*' : result= num_1 * num_2
+    else:
+        raise ValueError("Invalid operator. Valid Choices are (+,-,*)")
 
+    expression = f"{num_1} {operator} {num_2}"    #operation format
+    return expression, result
+ 
+
+#Gives the user with a set of math problems and calculates their answers.
 def math_quiz():
-    #setting initial score 0
     score = 0
-    #setting total questions to be asked = 3
-    total_question = 3
-     
-    # welcome message on screen 
+    total_questions = 3
+
     print("Welcome to the Math Quiz Game!")
     print("You will be presented with math problems, and you need to provide the correct answers.")
-    
-    # to generate random number and operator, performing arithmatic operation and returning results
-    for _ in range(total_question):
-        num_1 = Generate_Random_Integer(1, 10);
-        num_2 = Generate_Random_Integer(1, 5); 
-        operator = Generate_Random_Operator()
 
-        
-        PROBLEM, ANSWER = Generate_Expression_Result(num_1, num_2, operator)
-        #users answer
-        print(f"\nQuestion: {PROBLEM}")
+# iterate overs total number of questions"
+    for _ in range(total_questions):
+        random_number1 = Generate_Random_Integer(1, 10); 
+        random_number2 = Generate_Random_Integer(1, 5); 
+        random_operator = Generate_Random_Operator()
+
+        problem, answer = Evaluate_Mathematical_Expression(random_number1, random_number2, random_operator)
+        print(f"\nQuestion: {problem}")
         user_answer = input("Your answer: ")
         user_answer = int(user_answer)
+
         
-        #Exception handling when input is not an integer or invalid
-        try: 
-            user_answer == int(user_answer)    
-        except ValueError:
-            print("Invalid Input ! Please enter an integer")
-            continue
-        
-        #if answer provided by user is correct
-        if user_answer == ANSWER:
-            print("congratulations! correct answer, you earned a point")
-            score +=1    #Incrementing score if correct by 1
-        else: 
-            #if user's answer is wrong
-            print(f"Sorry wrong answer. The correct answer is {ANSWER}.")
-    print(f"\nGame over! Your score is: {score}/{total_question}")
+        if user_answer == answer:
+            print("Correct! You earned a point.")
+            s += 1
+        else:
+            print(f"Wrong answer. The correct answer is {answer}.")
+
+    print(f"\nGame over! Your score is: {score}/{total_questions}")
 
 if __name__ == "__main__":
     math_quiz()
